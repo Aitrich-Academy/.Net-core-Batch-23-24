@@ -15,7 +15,8 @@ namespace Sevice_Repo_Demo.Pages
         public void OnGet()
         {
             var userId = HttpContext.Session.GetInt32("UserId");
-            if (userId != null) User = _service.GetUser(userId.Value);
+            if (userId != null) 
+                User = _service.GetUser(userId.Value);
         }
 
         public IActionResult OnPost() => RedirectToPage("/EditProfile");

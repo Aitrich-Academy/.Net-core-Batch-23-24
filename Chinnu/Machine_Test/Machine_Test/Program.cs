@@ -1,5 +1,4 @@
-using Login_dto.Data;
-using Login_dto.Profiles;
+using Machine_Test.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,8 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 
+builder.Services.AddDbContext<ApplicationDbContext>(options=>options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 builder.Services.AddSession();
-builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 var app = builder.Build();
 
@@ -25,7 +25,6 @@ app.UseStaticFiles();
 
 app.UseRouting();
 app.UseSession();
-
 app.UseAuthorization();
 
 app.MapRazorPages();
