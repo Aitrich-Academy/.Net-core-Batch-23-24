@@ -1,0 +1,46 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<h2>Library Management</h2>
+
+
+<form method="get">
+    <input type="text" name="searchString" value="@Model.SearchDesignation" placeholder="Enter employee Designation" />
+    <button type="submit" class="btn btn-primary">Search</button>
+
+    <p>TotalCount:@Model.Count</p>
+</form>
+
+
+<a asp-page="/Create" class="btn btn-primary">Add New Employee</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Employee Name</th>
+            <th>Designation</th>
+            <th>Salary</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var emp in Model.Employees)
+        {
+            <tr>
+                <td>@emp.EmpName</td>
+                <td>@emp.Designation</td>
+                <td>@emp.Salary</td>
+                <td>
+                    <a asp-page="/Edit" asp-route-id="@emp.EmpId" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-page="/Details" asp-route-id="@emp.EmpId" class="btn btn-sm btn-info">Details</a>
+                    <a asp-page="/Delete" asp-route-id="@emp.EmpId" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+         }
+    </tbody>
+</table>
+@if (!Model.Employees.Any())
+{
+    <p>No employees found.</p>
+}

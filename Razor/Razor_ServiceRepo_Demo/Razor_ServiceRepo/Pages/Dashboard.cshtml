@@ -1,0 +1,17 @@
+﻿@page
+@model Razor_ServiceRepo.Pages.DashboardModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+<h1>@ViewData["Title"]</h1>
+
+
+@if(Model.UserName != null)
+{
+    <p>Welcome, @Model.UserName!</p>
+    <a asp-page="/Profile">My Profile</a>
+    <a asp-page="/Logout">Logout</a>
+};
+
+
+
