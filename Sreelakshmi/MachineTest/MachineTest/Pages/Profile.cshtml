@@ -1,0 +1,11 @@
+﻿@page
+@model MachineTest.Pages.ProfileModel
+@{
+}
+<h2>My Profile</h2>
+@if(Model.User!=null)
+<p>First Name:@Model.User.FirstName</p>
+<p>Last Name:@Model.User.LastName</p>
+<p>First Name:@Model.User.FirstName</p>
+
+<a asp-page="Logout"></a>

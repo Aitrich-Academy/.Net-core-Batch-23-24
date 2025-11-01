@@ -1,49 +1,39 @@
-using LoginApp.Data;
+using MachineTest.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Dynamic;
 
-namespace Login_App.Pages
+namespace MachineTest.Pages
 {
     public class LoginModel : PageModel
     {
-        private readonly ApplicationDbContext _db;
-
-
-        public LoginModel(ApplicationDbContext db)
+        private readonly IUserService _service;
+        public LoginModel(IUserService service)
         {
-            _db = db;
+            _service = service;
         }
-
-
         [BindProperty]
-        public string Email { get; set; }
-
-
+        public string Email {  get; set; }
         [BindProperty]
         public string Password { get; set; }
-
-
         public string ErrorMessage { get; set; }
 
-
-        public void OnGet()
-        {
-        }
-
-
+        
         public IActionResult OnPost()
         {
-            var user = _db.Users.FirstOrDefault(u => u.Email == Email && u.Password == Password);
-            if (user != null)
+            var user = _service.Login(Email, Password);
+            if (user == null)
+
             {
                 HttpContext.Session.SetInt32("UserId", user.Id);
                 HttpContext.Session.SetString("UserName", user.FirstName);
-                return RedirectToPage("/Home");
+                return RedirectToPage("/Dashboard");
+
             }
-
-
-            ErrorMessage = "Invalid email or password.";
+            ErrorMessage = "Invalid!!!";
             return Page();
         }
+        
+
     }
 }

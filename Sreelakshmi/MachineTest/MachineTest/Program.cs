@@ -1,18 +1,16 @@
-using BlazorStudentApp.Data;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
+using MachineTest.Data;
+using MachineTest.Repository;
+using MachineTest.Service;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer("Data Source=Apsara;Initial Catalog=Api_Workshop;Integrated Security=True;Trust Server Certificate=True"));
-
-builder.Services.AddScoped<StudentSession>();
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddSession();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
 
 var app = builder.Build();
 
@@ -25,13 +23,13 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseStaticFiles();
 
-
 app.UseRouting();
+app.UseSession();
 
-app.MapBlazorHub();
-app.MapFallbackToPage("/_Host");
+app.UseAuthorization();
+
+app.MapRazorPages();
 
 app.Run();
