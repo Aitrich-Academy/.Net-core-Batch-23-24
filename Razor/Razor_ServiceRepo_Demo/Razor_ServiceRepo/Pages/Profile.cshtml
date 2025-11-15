@@ -1,0 +1,19 @@
+﻿@page
+@model Razor_ServiceRepo.Pages.ProfileModel
+@{
+    ViewData["Title"] = "Profile";
+}
+<h1>My Profile</h1>
+@if(Model.User != null)
+{
+    <div>
+        <p><strong>First Name:</strong> @Model.User.FirstName</p>
+        <p><strong>Last Name:</strong> @Model.User.LastName</p>
+        <p><strong>Email:</strong> @Model.User.Email</p>
+    </div>
+}
+else
+{
+    <p>User profile not found.</p>
+}
+
