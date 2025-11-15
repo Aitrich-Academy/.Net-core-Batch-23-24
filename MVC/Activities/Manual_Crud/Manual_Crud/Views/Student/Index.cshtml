@@ -1,0 +1,21 @@
+﻿@model List<Manual_Crud.Models.Student>
+
+<h2>Students</h2>
+<a href="/Student/Create">Add Student</a>
+<table border="1">
+    <tr><th>Name</th><th>Age</th><th>Actions</th></tr>
+    @foreach (var s in Model)
+    {
+        <tr>
+            <td>@s.Name</td>
+            <td>@s.Age</td>
+            <td>
+                <a href="/Student/Edit/@s.Id">Edit</a> |
+                <a href="/Student/Details/@s.Id">Details</a> |
+                <a href="/Student/Delete/@s.Id">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+
+
