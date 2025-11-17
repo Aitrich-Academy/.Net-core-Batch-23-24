@@ -22,7 +22,7 @@ namespace RazorLibraryManagement.Pages.Books
                 return NotFound();
             }
             var book = await _context.BookTable.FindAsync(id);
-           // var book = await _context.BookTable.FirstOrDefault(m => m.BookId == id);
+           
             if (book == null)
             {
                 return NotFound();

@@ -3,7 +3,9 @@
 @inject AppDbContext db
 @inject StudentSession studentSession
 
-<h3>Student Registration</h3>
+
+
+
 
 <input @bind="student.Name" placeholder="Enter Name" class="form-control" />
 <br />
@@ -26,6 +28,6 @@
 
         studentSession.Name = student.Name;
 
-        student = new(); // clear the form
+        student = new(); 
     }
 }
