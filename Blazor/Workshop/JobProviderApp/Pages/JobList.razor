@@ -108,7 +108,7 @@
 </div>
 
 @code {
-    private List<JobDto> jobs;
+    private List<JobDto> jobs = new();
     private JobDto editingJob = new();
     private string jobProviderEmail;
     private int? jobProviderId; // Store Provider ID from session

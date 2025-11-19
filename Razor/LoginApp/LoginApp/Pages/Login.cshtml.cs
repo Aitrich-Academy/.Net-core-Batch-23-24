@@ -2,7 +2,7 @@ using LoginApp.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace LoginApp.Pages
+namespace Login_App.Pages
 {
     public class LoginModel : PageModel
     {
