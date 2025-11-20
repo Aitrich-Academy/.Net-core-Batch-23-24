@@ -1,0 +1,11 @@
+﻿@model List<PartialViewDemo.Models.Student>
+
+
+<h2>Students</h2>
+
+
+<div class="row">
+    @foreach (var s in Model)
+    {
+        @await Html.PartialAsync("_StudentCard", s)
+    }
