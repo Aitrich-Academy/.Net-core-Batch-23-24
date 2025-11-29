@@ -1,0 +1,72 @@
+﻿@model IEnumerable<MVC_HireMeNow_Workshop.Models.Entities.Job>
+
+@{
+    ViewData["Title"] = "AllJobs";
+}
+
+<h1>AllJobs</h1>
+
+<p>
+    <a asp-action="PostJob">Post New Job</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            
+             <th>  
+                  @Html.DisplayNameFor(model => model.TypeOfWorkPlace)  
+             </th> 
+            <th>
+                @Html.DisplayNameFor(model => model.Salary)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Company)
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+           
+             <td>  
+                @Html.DisplayFor(modelItem => item.TypeOfWorkPlace)  
+              </td> 
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary)
+            </td>
+           
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.Company.Name)
+            </td>
+           
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.JobId">Edit</a> |
+                
+                <a asp-action="Delete" asp-route-id="@item.JobId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

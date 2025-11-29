@@ -1,0 +1,62 @@
+﻿@model MVC_HireMeNow_Workshop.Models.DTOs.JobDTO
+
+@{
+    ViewData["Title"] = "PostJob";
+}
+
+<h1>PostJob</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="PostJob">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Location" class="control-label"></label>
+                <input asp-for="Location" class="form-control" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="TypeOfWorkPlace" class="control-label"></label>
+                <input asp-for="TypeOfWorkPlace" class="form-control" />
+                <span asp-validation-for="TypeOfWorkPlace" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Salary" class="control-label"></label>
+                <input asp-for="Salary" class="form-control" />
+                <span asp-validation-for="Salary" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <input type="submit" value="Post Job" class="mt-3 btn btn-primary" />
+
+                <a href="@Url.Action("AllJobs", "JobProvider")" class="mt-3 btn btn-secondary">All Jobs</a>
+            </div>
+
+            @if (TempData["Message"] != null)
+            {
+                <p>@TempData["Message"]</p>
+
+            }
+
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
