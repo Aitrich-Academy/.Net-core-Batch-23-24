@@ -60,7 +60,7 @@ namespace WebApplication2.Controllers
             existingProduct.Price = product.Price;
           
 
-            // Now call the service to update the product in the database
+           
             _service.Update(existingProduct);
 
             return NoContent();
