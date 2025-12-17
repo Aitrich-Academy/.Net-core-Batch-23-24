@@ -1,0 +1,43 @@
+﻿@page
+@model Machine_Raz.Pages.IndexModel
+@{
+}
+
+<h2>Job Listing</h2>
+
+<a asp-page="/create" class="btn btn-primary">CREATE NEW JOB</a>
+
+<table>
+    <thead>
+        <tr>
+           <th>Job Title</th
+            <th>Company</th>
+            <th>Location</th>
+            <th>Employment Type</th>
+            <th>Salary Range</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach(var job in Model.JobList)
+        {
+           <tr>
+               <td>@job.JobTitle</td>
+                <td>@job.Company</td>
+                 <td>@job.Location</td>
+                  <td>@job.EmploymentType</td>
+                   <td>@job.SalaryRange</td>
+
+
+                   <td> 
+                       <a asp-page="/Edit" asp-route-id="@job.Id" class="btn btn-danger">EDIT</a>
+                       <a asp-page="/Delete" asp-route-id="@job.Id" class="btn btn-danger">DELETE</a>
+                       <a asp-page="/Details" asp-route-id="@job.Id" class="btn btn-danger">DETAILS</a>
+                   </td>
+                  
+           </tr> 
+        }
+    </tbody>
+    
+</table>

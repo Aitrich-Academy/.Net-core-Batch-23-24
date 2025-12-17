@@ -1,0 +1,37 @@
+﻿@page
+@model Exercise_Razor.Pages.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h2 style="text-align:center; color:#333; font-family:Arial, sans-serif; margin-bottom:20px;">
+    YOU CAN LOGIN HERE
+</h2>
+
+<form method="post" style="max-width:400px; margin:0 auto; padding:20px; background-color:#f9f9f9; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1); font-family:Arial, sans-serif;">
+
+    <div style="margin-bottom:15px;">
+        <label asp-for="Email" class="control-label" style="display:block; margin-bottom:5px; font-weight:bold; color:#555;"></label>
+        <input asp-for="Email" class="form-control" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px; box-sizing:border-box;" />
+        <span asp-validation-for="Email" class="text-danger" style="font-size:12px; color:red;"></span>
+    </div>
+
+    <div style="margin-bottom:15px;">
+        <label asp-for="Password" class="control-label" style="display:block; margin-bottom:5px; font-weight:bold; color:#555;"></label>
+        <input asp-for="Password" type="password" class="form-control" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px; box-sizing:border-box;" />
+        <span asp-validation-for="Password" class="text-danger" style="font-size:12px; color:red;"></span>
+    </div>
+
+    <button type="submit" style="width:100%; padding:10px; background-color:#007BFF; color:white; border:none; border-radius:5px; cursor:pointer; font-size:16px;">
+        LOGIN
+    </button>
+</form>
+
+<p style="text-align:center; font-family:Arial, sans-serif; margin-top:15px; color:#333;">
+    Don’t have an account?
+    <a asp-page="Register" style="color:#007BFF; text-decoration:none; font-weight:bold;">Create one here</a>
+</p>
+
+<p style="text-align:center; color:red; margin-top:10px; font-family:Arial, sans-serif;">
+    @Model.ErrorMessage
+</p>
