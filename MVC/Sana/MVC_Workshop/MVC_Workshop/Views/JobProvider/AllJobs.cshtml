@@ -1,0 +1,42 @@
+﻿@model IEnumerable<MVC_Workshop.Models.Entities.Job>
+@{
+    ViewData["Title"] = "All Jobs";
+}
+<h1>@ViewData["Title"]</h1>
+<hr />
+<p>
+    <a asp-action="JobPost">Post New Job</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Location</th>
+            <th>Workplace Type</th>
+            <th>Salary</th>
+            <th>Company</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.Description</td>
+                <td>@item.Location</td>
+                <td>@item.TypeOfWorkPlace</td>
+                <td>@item.Salary</td>
+                <td>@item.Company?.Name</td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.JobId">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.JobId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
