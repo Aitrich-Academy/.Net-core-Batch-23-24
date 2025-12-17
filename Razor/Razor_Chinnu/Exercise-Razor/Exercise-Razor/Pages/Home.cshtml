@@ -1,0 +1,82 @@
+﻿@page
+@model Exercise_Razor.Pages.HomeModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h2 style="text-align:center; color:#333; font-family:Arial, sans-serif; margin-bottom:20px;">
+    Dashboard
+</h2>
+
+@if (Model.UserName != null)
+{
+    <div>
+        <p >
+            Welcome, <strong>@Model.UserName!</strong>
+        </p>
+
+        <!-- My Profile button under the welcome message -->
+        <a asp-page="/Profile" >
+            My Profile
+        </a>
+    </div>
+}
+
+<h2 >
+    Job Listings
+</h2>
+
+<div >
+    <a asp-page="Create">
+        Create New Job
+    </a>
+</div>
+
+<table>
+    <thead>
+        <tr >
+            <th >Job Title</th>
+            <th >Company</th>
+            <th >Location</th>
+            <th >Employment Type</th>
+            <th >Salary Range</th>
+            <th >Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (Model.JobPosts != null && Model.JobPosts.Count > 0)
+        {
+            @foreach (var job in Model.JobPosts)
+            {
+                <tr >
+                    <td style="padding:10px;">@job.JobTitle</td>
+                    <td style="padding:10px;">@job.Company</td>
+                    <td style="padding:10px;">@job.Location</td>
+                    <td style="padding:10px;">@job.EmploymentType</td>
+                    <td style="padding:10px;">@job.SalaryRange</td>
+                    <td style="padding:10px;">
+                        <a asp-page="Edit" asp-route-id="@job.Id" style="display:inline-block; margin-right:5px; padding:5px 10px; background-color:#ffc107; color:black; text-decoration:none; border-radius:5px; font-size:14px;">Edit</a>
+                        <a asp-page="Details" asp-route-id="@job.Id" style="display:inline-block; margin-right:5px; padding:5px 10px; background-color:#17a2b8; color:white; text-decoration:none; border-radius:5px; font-size:14px;">View</a>
+                        <a asp-page="Delete" asp-route-id="@job.Id" style="display:inline-block; padding:5px 10px; background-color:#dc3545; color:white; text-decoration:none; border-radius:5px; font-size:14px;">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" style="text-align:center; padding:20px; color:#555;">
+                    No jobs found. Click "Create New Job" to add one.
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Logout button under table -->
+<div style="text-align:center; margin-top:30px;">
+    <a asp-page="/Logout" style="display:inline-block; padding:10px 20px; background-color:#dc3545; color:white; border-radius:5px; text-decoration:none; font-weight:bold;">
+        Logout
+    </a>
+</div>

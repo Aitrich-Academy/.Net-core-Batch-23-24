@@ -1,0 +1,36 @@
+﻿@page
+@model Exercise_Razor.Pages.DetailsModel
+@{
+    ViewData["Title"] = "Job Post Details";
+}
+
+<h2 style="text-align:center; color:#333; font-family:Arial, sans-serif; margin-bottom:20px;">
+    Job Post Details
+</h2>
+
+<div style="max-width:600px; margin:0 auto; background-color:#f9f9f9; padding:25px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1); font-family:Arial, sans-serif;">
+    <hr style="border:none; border-top:1px solid #ccc; margin-bottom:20px;" />
+
+    <dl style="line-height:1.8; color:#555; margin:0;">
+        <dt style="font-weight:bold; color:#333;">Job Title</dt>
+        <dd style="margin:0 0 10px 0;">@Model.jobdetails.JobTitle</dd>
+
+        <dt style="font-weight:bold; color:#333;">Company</dt>
+        <dd style="margin:0 0 10px 0;">@Model.jobdetails.Company</dd>
+
+        <dt style="font-weight:bold; color:#333;">Location</dt>
+        <dd style="margin:0 0 10px 0;">@Model.jobdetails.Location</dd>
+
+        <dt style="font-weight:bold; color:#333;">Employment Type</dt>
+        <dd style="margin:0 0 10px 0;">@Model.jobdetails.EmploymentType</dd>
+
+        <dt style="font-weight:bold; color:#333;">Salary Range</dt>
+        <dd style="margin:0 0 20px 0;">@Model.jobdetails.SalaryRange</dd>
+    </dl>
+
+    <div style="text-align:center; margin-top:20px;">
+        <a asp-page="Home" style="display:inline-block; background-color:#007BFF; color:white; padding:10px 20px; border-radius:5px; text-decoration:none; font-weight:bold;">
+            Back to Dashboard
+        </a>
+    </div>
+</div>
