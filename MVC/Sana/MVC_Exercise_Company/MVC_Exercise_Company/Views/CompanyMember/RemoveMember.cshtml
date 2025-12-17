@@ -1,0 +1,59 @@
+﻿@model IEnumerable<MVC_Exercise_Company.Models.CompanyMember>
+
+@{
+    ViewData["Title"] = "Remove Member";
+}
+
+<h2>Remove Company Member</h2>
+<hr />
+
+<!--Search Box -->
+<form method="get" asp-action="RemoveMember">
+    <div class="input-group mb-3" style="max-width:400px;">
+        <input type="text" name="search" value="@ViewBag.Search" class="form-control"
+               placeholder="Search by Name / MemberID / Designation" />
+        <button class="btn btn-primary" type="submit">Search</button>
+        <a asp-action="RemoveMember" class="btn btn-secondary">Clear</a>
+    </div>
+</form>
+
+<!--Member List -->
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Designation</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Any())
+        {
+            @foreach (var m in Model)
+            {
+                <tr>
+                    <td>@m.FirstName @m.LastName</td>
+                    <td>@m.Email</td>
+                    <td>@m.Phone</td>
+                    <td>@m.Designation</td>
+                    <td>
+                        <form asp-action="RemoveMember" method="post">
+                            <input type="hidden" name="memberId" value="@m.MemberId" />
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                Remove
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" class="text-center text-danger">No Members Found</td>
+            </tr>
+        }
+    </tbody>
+</table>
