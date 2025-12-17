@@ -51,5 +51,6 @@ namespace Domain.Service
         {
             return await _jobRepository.DeleteJobAsync(id);
         }
+
     }
 }
