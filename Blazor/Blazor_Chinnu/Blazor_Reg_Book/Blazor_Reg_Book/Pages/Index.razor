@@ -1,0 +1,88 @@
+﻿ @page "/Index" 
+@using Blazor_Reg_Book.Data.Interfaces
+@using Blazor_Reg_Book.Data.Models
+@using Blazor_Reg_Book.Data.Services
+@inject IBookServices _bookService;
+
+<PageTitle>Index</PageTitle>
+
+<h1>INDEX</h1>
+
+
+<form @onsubmit=Search> 
+
+    <div>
+        <input type="text" name="search" class="form-control" @bind-value="searchTitle" />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+<p>Total Books:@TotalCount</p>
+
+<p>
+    <NavLink class="nav-link" href="/Create">Add Book</NavLink>
+</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Description</th>
+            <th>Published_date</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach(var item in Booklist)
+        {
+            var editUrl = $"/Edit/{(item?.Id ?? 0)}";
+            var deleteUrl = $"/Delete/{(item?.Id ?? 0)}";
+            var detailsUrl = $"/Details/{(item?.Id ?? 0)}";
+
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.Author</td>
+                <td>@item.Description</td>
+                <td>@item.PublishedDate</td>
+
+                <td>
+                    <NavLink class="nav-link" href="@editUrl">Edit</NavLink>
+                    <NavLink class="nav-link" href="@deleteUrl">Delete</NavLink>
+                    <NavLink class="nav-link" href="@detailsUrl">Details</NavLink>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@code
+{
+    List<Book> Booklist = new List<Book>();
+
+    private string searchTitle { get; set; }
+    private int TotalCount{ get; set; }
+
+    protected override void OnInitialized()
+    {
+        Booklist = _bookService.GetAllBooks();
+    }
+
+    protected void Search()
+    {
+        if(string.IsNullOrEmpty(searchTitle))
+        {
+            Booklist = _bookService.GetAllBooks();
+        }
+        else
+        {
+            Booklist = _bookService.GetBookBySearch(searchTitle);
+        }
+
+        TotalCount = Booklist.Count();
+
+    }
+}
+
+

@@ -1,0 +1,43 @@
+﻿@page "/Delete/{Id}"
+@using Blazor_Reg_Book.Data.Interfaces
+@using Blazor_Reg_Book.Data.Models
+@using Blazor_Reg_Book.Data.Services
+@inject IBookServices _bookservice
+@inject NavigationManager navigationmanager
+
+<h3>Delete</h3>
+<p>Do you want to Delete?</p>
+<div>
+    <form @onsubmit=DeleteBook>
+        <label for="Title" >Title:@deletebook.Title</label> <br />
+        <label for="Author" >Author:@deletebook.Author</label> <br />
+        <label for="Description">Description:@deletebook.Description</label> <br />
+        <label for="Publisheddate">Published Date:@deletebook.PublishedDate</label> <br />
+
+        <button type="submit" class="btn btn-primary"> DELETE </button>
+        <NavLink class="nav-link" href="/">BACK TO LIST</NavLink>
+
+
+    </form>
+</div>
+
+
+@code {
+
+    [Parameter]
+    public string Id{ get; set; }
+
+    private Book deletebook = new Book();
+
+    protected override void OnInitialized()
+    {
+        deletebook = _bookservice.GetBookById(Convert.ToInt32(Id));
+    }
+
+    protected void DeleteBook()
+    {
+        _bookservice.Deletebook(deletebook.Id);
+       navigationmanager.NavigateTo("/");
+    }
+}
+

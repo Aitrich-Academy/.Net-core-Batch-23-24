@@ -1,0 +1,38 @@
+﻿@page "/"
+@using Blazor_STUDENT.Data
+@inject AppDbContext db;
+@inject StudentSession studentSession
+
+<h3>Student Registration</h3>
+
+
+<input @bind="student.Name" placeholder="Enter Name" class="form-control" />
+<br />
+<input @bind="student.Age" placeholder="Enter Age" class="form-control" />
+<br />
+<button class="btn btn-primary" @onclick="SaveStudent">Save</button>
+
+
+@if (!string.IsNullOrEmpty(studentSession.Name))
+{
+    <p class="mt-3">Welcome, <b>@studentSession.Name</b>!</p>
+}
+
+
+
+@code{
+    private Student student = new();
+
+    private async Task SaveStudent()
+    {
+        db.Students.Add(student);
+        await db.SaveChangesAsync();
+
+        studentSession.Name = student.Name;
+
+        student = new(); 
+    }
+
+}
+
+
