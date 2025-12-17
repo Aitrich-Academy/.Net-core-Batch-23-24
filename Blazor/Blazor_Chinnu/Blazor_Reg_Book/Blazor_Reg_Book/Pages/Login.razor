@@ -1,0 +1,45 @@
+﻿@page "/Login"
+@using Blazor_Reg_Book.Data.Interfaces
+@using Blazor_Reg_Book.Data.Models
+@inject IUserServices   _userServices;
+@inject NavigationManager navigationManager;
+
+<h3>Login</h3>
+<hr />
+
+<form @onsubmit="LogUser">
+
+    <div>
+        <label for="Email">Email</label>
+        <input id="Email" @bind="loguser.Email" />
+    </div>
+
+    <div>
+        <label for="Password">Password</label>
+        <input id="Password" @bind="loguser.Password" type="password" />
+    </div>
+
+    <button type="submit" class="btn btn-primary"> LOGIN </button>
+
+    <p>You dont have an Account</p>
+    <NavLink class="nav-link" href="/Register">Go To Register</NavLink>
+</form>
+
+@code {
+    User loguser = new User();
+    private string ErrorMessage{ get; set; }
+
+    protected void LogUser()
+    {
+        var user = _userServices.LoginUser(loguser.Email, loguser.Password);
+
+        if(!user)
+        {
+            ErrorMessage = "Invalid Credentials";  
+        }
+
+        navigationManager.NavigateTo("/Index");
+
+    }
+
+}

@@ -1,0 +1,53 @@
+﻿@page "/Create"
+@using Blazor_Reg_Book.Data.Interfaces
+@using Blazor_Reg_Book.Data.Models
+@inject IBookServices _bookServices;
+@inject NavigationManager navigationmanager;
+<h3>Create</h3>
+
+<hr />
+
+<div>
+    <form @onsubmit="Add">
+
+        <div>
+            <label for="Title">Title</label>
+            <input id="Title" @bind="book.Title" />
+        </div>
+
+        <div>
+            <label for="Author">Author</label>
+            <input id="Author" @bind="book.Author" />
+        </div>
+
+        <div>
+            <label for="Description">Description</label>
+            <input id="Description" @bind="book.Description" />
+        </div>
+
+        <div>
+            <label for="Publisheddate">Published Date</label>
+            <input id="publisheddate" @bind="book.PublishedDate" />
+        </div>
+
+        <button type="submit" class="btn btn-primary"> SUBMIT </button>
+        <NavLink class="nav-link" href="/">BACK TO LIST</NavLink>
+    
+    </form>
+</div>
+
+
+
+
+
+@code {
+    Book book = new Book();
+
+
+    protected void Add()
+    {
+        _bookServices.AddBook(book);
+        navigationmanager.NavigateTo("/");
+    }
+
+}

@@ -1,0 +1,62 @@
+﻿@page "/"
+
+@using Blazor_Reg_Book.Data.Interfaces
+@using Blazor_Reg_Book.Data.Models
+@inject IUserServices _userservice
+@inject NavigationManager navigationManager;
+
+<h3>Register</h3>
+
+<form @onsubmit="AddUser">
+
+
+   
+
+    <div>
+        <label for="Name">Name</label>
+        <input id="Name" @bind="user.Name" />
+    </div>
+
+
+    <div>
+        <label for="Email">Email</label>
+        <input id="Email" @bind="user.Email" />
+    </div>
+
+    <div>
+        <label for="Password">Password</label>
+        <input id="Password" @bind="user.Password" type="password" />
+    </div>
+
+
+  
+
+    <button type="submit" class="btn btn-primary"> REGISTER </button>
+    <NavLink class="nav-link" href="/">BACK TO LIST</NavLink>
+
+
+
+</form>
+
+<p>@ErrorMessage</p>
+
+@code {
+    User user = new User();
+    private string ErrorMessage { get; set; }
+
+    protected void AddUser()
+    {
+        var success = _userservice.RegisterUser(user);
+        if(!success)
+        {
+            ErrorMessage = "Email Already Registered";
+        }
+        else
+        {
+            navigationManager.NavigateTo("/Login");
+        }
+        
+    }
+
+
+}
