@@ -1,0 +1,54 @@
+﻿@page
+@model Machine_Raz.Pages.CreateModel
+@{
+}
+<h3>Create Job</h3>
+
+<form method="post">
+
+    <div>
+        <label>Job Title</label>
+        <input asp-for="jobdto.JobTitle" />
+        <span asp-validation-for="jobdto.JobTitle"></span>
+    </div>
+
+    <div>
+        <label>Company</label>
+        <input asp-for="jobdto.Company" />
+        <span asp-validation-for="jobdto.Company"></span>
+    </div>
+    <div>
+        <label>Location</label>
+        <input asp-for="jobdto.Location" />
+        <span asp-validation-for="jobdto.Location"></span>
+    </div>
+    <div>
+        <label>EmploymentType</label>
+        <select asp-for="jobdto.EmploymentType">
+            <option value="Full-Time">Full-Time</option>
+            <option value="Part-Time">part-Time</option>
+            <option value="Contract">Contract</option>
+        </select>
+        <span asp-validation-for="jobdto.EmploymentType"></span>
+    </div>
+    <div>
+        <label>JobDescription</label>
+        <textarea asp-for="jobdto.JobDescription"></textarea>
+        <span asp-validation-for="jobdto.JobDescription"></span>
+    </div>
+
+    <div>
+        <label>SalaryRange</label>
+        <textarea asp-for="jobdto.SalaryRange"></textarea>
+        <span asp-validation-for="jobdto.SalaryRange"></span>
+    </div>
+    <div>
+        <label>Requirements</label>
+        <textarea asp-for="jobdto.Requirements"></textarea>
+        <span asp-validation-for="jobdto.Requirements"></span>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-page="Index" class="btn btn-primary">Cancel</a>
+</form>

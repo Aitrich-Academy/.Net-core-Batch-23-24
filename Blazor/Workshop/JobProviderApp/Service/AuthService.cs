@@ -34,44 +34,7 @@ namespace JobProviderApp.Service
             return true;
         }
 
-        //public async Task<bool> Login(string email, string password)
-        //{
-        //    var jobProvider = await _jobProviderRepo.GetByEmailAsync(email);
-        //    if (jobProvider == null || !BCrypt.Net.BCrypt.Verify(password, jobProvider.PasswordHash))
-        //        return false;
-
-        //    var session = _httpContextAccessor.HttpContext.Session;
-        //    session.SetInt32("JobProviderId", jobProvider.Id);
-        //    session.SetString("JobProviderEmail", jobProvider.Email);
-
-        //    return true;
-        //}
-        //public async Task<bool> Login(string email, string password)
-        //{
-        //    var jobProvider = await _jobProviderRepo.GetByEmailAsync(email);
-        //    if (jobProvider == null || !BCrypt.Net.BCrypt.Verify(password, jobProvider.PasswordHash))
-        //        return false;
-
-        //    try
-        //    {
-        //        var session = _httpContextAccessor.HttpContext.Session;
-        //        Console.WriteLine("Session available: " + (session != null)); // Debug
-        //        session.SetInt32("JobProviderId", jobProvider.Id);
-        //        session.SetString("JobProviderEmail", jobProvider.Email);
-        //        Console.WriteLine("Session set successfully"); // Debug
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine("Session error: " + ex.Message);
-        //    }
-
-        //    return true;
-        //}
-
-        //public void Logout()
-        //{
-        //    _httpContextAccessor.HttpContext.Session.Clear();
-        //}
+        
         public async Task<bool> Login(string email, string password)
         {
             var jobProvider = await _jobProviderRepo.GetByEmailAsync(email);

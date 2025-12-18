@@ -1,0 +1,48 @@
+﻿@page
+@model Exercise_Razor.Pages.DeleteModel
+@{
+    ViewData["Title"] = "Delete Job";
+}
+
+<h2 style="text-align:center; color:#dc3545; font-family:Arial, sans-serif; margin-bottom:20px;">
+    Delete Job
+</h2>
+
+<div style="max-width:500px; margin:0 auto; padding:20px; background-color:#f9f9f9; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1); font-family:Arial, sans-serif;">
+
+    <h4 style="text-align:center; color:#333; margin-bottom:10px;">Job Details</h4>
+    <hr style="border:none; border-top:1px solid #ccc; margin-bottom:20px;" />
+
+    <dl style="line-height:1.8; color:#555;">
+        <dt style="font-weight:bold;">Job Title</dt>
+        <dd style="margin:0 0 10px 0;">@Model.JobPost.JobTitle</dd>
+
+        <dt style="font-weight:bold;">Company</dt>
+        <dd style="margin:0 0 10px 0;">@Model.JobPost.Company</dd>
+
+        <dt style="font-weight:bold;">Location</dt>
+        <dd style="margin:0 0 10px 0;">@Model.JobPost.Location</dd>
+
+        <dt style="font-weight:bold;">Employment Type</dt>
+        <dd style="margin:0 0 10px 0;">@Model.JobPost.EmploymentType</dd>
+
+        <dt style="font-weight:bold;">Salary Range</dt>
+        <dd style="margin:0 0 20px 0;">@Model.JobPost.SalaryRange</dd>
+    </dl>
+
+    <form method="post" style="text-align:center;">
+        <input type="hidden" asp-for="JobPost.Id" />
+
+        <p style="color:#dc3545; font-weight:bold; margin-bottom:20px;">
+            Are you sure you want to delete this job?
+        </p>
+
+        <button type="submit" style="background-color:#dc3545; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer; font-weight:bold; margin-right:10px;">
+            Delete
+        </button>
+
+        <a asp-page="Index" style="display:inline-block; background-color:#6c757d; color:white; padding:10px 20px; border-radius:5px; text-decoration:none; font-weight:bold;">
+            Cancel
+        </a>
+    </form>
+</div>

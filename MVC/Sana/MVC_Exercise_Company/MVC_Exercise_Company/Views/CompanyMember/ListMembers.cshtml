@@ -1,0 +1,41 @@
+﻿@model IEnumerable<MVC_Exercise_Company.Models.CompanyMember>
+@{
+    ViewData["Title"] = "Company Members";
+}
+<h2>@ViewData["Title"]</h2>
+<hr/>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Designation</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var member in Model)
+        {
+            <tr>
+                <td>@member.FirstName</td>
+                <td>@member.LastName</td>
+                <td>@member.Email</td>
+                <td>@member.Phone</td>
+                <td>@member.Designation</td>
+                <td>
+                    <a asp-action="RemoveMember" asp-route-id="@member.MemberId" class="btn btn-danger btn-sm">
+                        Remove Member
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="mt-2">
+    <a asp-controller="CompanyMember" asp-action="AddMember" class="btn btn-success">Add New Member</a>
+    <a asp-controller="Company" asp-action="Profile" class="btn btn-secondary">Back to Company Profile</a>
+</div>

@@ -1,0 +1,74 @@
+﻿@page
+@model Exercise_Razor.Pages.EditModel
+@{
+    ViewData["Title"] = "Edit Job Post";
+}
+
+<h2 style="text-align:center; color:#333; font-family:Arial, sans-serif; margin-bottom:20px;">
+    EDIT JOB POST
+</h2>
+
+<form method="post" style="max-width:600px; margin:0 auto; background-color:#f9f9f9; padding:25px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1); font-family:Arial, sans-serif;">
+
+    <input type="hidden" asp-for="JobPost.Id" />
+
+    <div style="margin-bottom:15px;">
+        <label asp-for="JobPost.JobTitle" style="display:block; margin-bottom:5px; font-weight:bold; color:#555;"></label>
+        <input asp-for="JobPost.JobTitle" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px; box-sizing:border-box;" />
+        <span asp-validation-for="JobPost.JobTitle" style="font-size:12px; color:red;"></span>
+    </div>
+
+    <div style="margin-bottom:15px;">
+        <label asp-for="JobPost.Company" style="display:block; margin-bottom:5px; font-weight:bold; color:#555;"></label>
+        <input asp-for="JobPost.Company" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px; box-sizing:border-box;" />
+        <span asp-validation-for="JobPost.Company" style="font-size:12px; color:red;"></span>
+    </div>
+
+    <div style="margin-bottom:15px;">
+        <label asp-for="JobPost.Location" style="display:block; margin-bottom:5px; font-weight:bold; color:#555;"></label>
+        <input asp-for="JobPost.Location" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px; box-sizing:border-box;" />
+        <span asp-validation-for="JobPost.Location" style="font-size:12px; color:red;"></span>
+    </div>
+
+    <div style="margin-bottom:15px;">
+        <label asp-for="JobPost.EmploymentType" style="display:block; margin-bottom:5px; font-weight:bold; color:#555;"></label>
+        <select asp-for="JobPost.EmploymentType" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px; box-sizing:border-box;">
+            <option value="Full-Time">Full-Time</option>
+            <option value="Part-Time">Part-Time</option>
+            <option value="Contract">Contract</option>
+        </select>
+        <span asp-validation-for="JobPost.EmploymentType" style="font-size:12px; color:red;"></span>
+    </div>
+
+    <div style="margin-bottom:15px;">
+        <label asp-for="JobPost.SalaryRange" style="display:block; margin-bottom:5px; font-weight:bold; color:#555;"></label>
+        <input asp-for="JobPost.SalaryRange" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px; box-sizing:border-box;" />
+        <span asp-validation-for="JobPost.SalaryRange" style="font-size:12px; color:red;"></span>
+    </div>
+
+    <div style="margin-bottom:15px;">
+        <label asp-for="JobPost.JobDescription" style="display:block; margin-bottom:5px; font-weight:bold; color:#555;"></label>
+        <input asp-for="JobPost.JobDescription" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px; box-sizing:border-box;" />
+        <span asp-validation-for="JobPost.JobDescription" style="font-size:12px; color:red;"></span>
+    </div>
+
+    <div style="margin-bottom:20px;">
+        <label asp-for="JobPost.Requirements" class="control-label" style="display:block; margin-bottom:5px; font-weight:bold; color:#555;"></label>
+        <textarea asp-for="JobPost.Requirements" class="form-control" rows="3" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:5px; box-sizing:border-box; resize:vertical;"></textarea>
+        <span asp-validation-for="JobPost.Requirements" class="text-danger" style="font-size:12px; color:red;"></span>
+    </div>
+
+    <div style="text-align:center;">
+        <button type="submit" style="background-color:#28a745; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer; font-weight:bold; margin-right:10px;">
+            Save Changes
+        </button>
+
+        <a asp-page="Index" style="display:inline-block; background-color:#6c757d; color:white; padding:10px 20px; border-radius:5px; text-decoration:none; font-weight:bold;">
+            Cancel
+        </a>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
