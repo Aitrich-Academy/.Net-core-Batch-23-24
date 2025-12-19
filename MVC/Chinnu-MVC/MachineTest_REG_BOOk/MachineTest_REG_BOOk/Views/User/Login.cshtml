@@ -1,0 +1,23 @@
+﻿@model MachineTest_REG_BOOk.Models.User
+
+
+
+<div>
+    <h2>Login Here</h2>
+    <hr />
+</div>
+
+<form asp-action="Login" method="post">
+    <label>
+        Email
+    </label>
+    <input asp-for="Email" />
+
+    <label>
+       Password
+    </label>
+    <input asp-for="Password" />
+    <button type="submit">LOGIN</button>
+
+
+</form>
