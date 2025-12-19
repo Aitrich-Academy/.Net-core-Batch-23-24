@@ -1,0 +1,36 @@
+﻿
+@model IEnumerable<Employee>
+
+<h2>Employee Management</h2>
+<div>
+    <a href="/Employee/Create">Add New Employee</a><br />    
+    <hr />   
+</div>
+
+<div>   
+    <input type="search" name="searchDesignamtion"  placeholder="Search by designation"/>
+    <button btn-primary type="submit">Search</button>
+</div>
+
+<div>
+    <p>Total Count:</p>
+</div>
+<br />
+<hr />
+
+<table border="1">
+    <tr>
+        <th>EmployeeName</th>
+        <th>Designation</th>
+        <th>salary</th>
+    </tr>
+    @foreach(var E in Model)
+    {
+        <tr>
+          <td>@E.Name</td>
+          <td>@E.Designation</td>
+          <td>@E.Salary</td>
+        </tr>
+    }
+
+</table>
