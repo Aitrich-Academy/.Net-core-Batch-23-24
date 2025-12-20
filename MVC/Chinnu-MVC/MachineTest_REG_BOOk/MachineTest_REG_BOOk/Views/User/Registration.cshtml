@@ -1,0 +1,26 @@
+﻿@model MachineTest_REG_BOOk.Models.User
+
+
+<div>
+    <h2>REGISTER HERE</h2>
+    <hr />
+</div>
+
+
+<form asp-action="Registration" method="post">
+
+    <label>FirstName</label>
+    <input asp-for="FirstName" />
+    <label>LastName</label>
+    <input asp-for="LastName" />
+    <label>Email</label>
+    <input asp-for="Email" />
+    <label>password</label>
+    <input asp-for="Password" />
+
+    <button type="submit">REGISTER</button>
+        
+</form>
+
+
+<p>If you already have an account <a href="/User/Login">Login</a>Here</p>
